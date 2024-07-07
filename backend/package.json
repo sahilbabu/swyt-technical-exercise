@@ -7,7 +7,8 @@
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "create-product": "ts-node src/cli/productCLI.ts"
   },
   "repository": {
     "type": "git",
@@ -17,8 +18,9 @@
   "author": "Mudassar Ali",
   "contributors": [],
   "license": "ISC",
- "dependencies": {
+  "dependencies": {
     "@prisma/client": "^5.16.1",
+    "axios": "^1.7.2",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

@@ -1,5 +1,10 @@
-import { addProduct } from '../api/v1/repositories/productRepository';
+import axios from 'axios';
 import readline from 'readline';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const API_URL = process.env.API_URL || 'http://localhost:3000/api/v1/products';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -10,21 +15,30 @@ const question = (query: string): Promise<string> => {
   return new Promise(resolve => rl.question(query, resolve));
 };
 
-const createProductCLI = async () => {
-  const name = await question('Product Name: ');
-  const description = await question('Product Description: ');
-  const price = parseFloat(await question('Product Price: '));
-  const image = await question('Product Image URL: ');
-  const categoryId = parseInt(await question('Category ID: '), 10);
-
+const createProduct = async () => {
   try {
-    const product = await addProduct({ name, description, price, image, categoryId });
-    console.log('Product created successfully:', product);
+    const name = await question('Product name: ');
+    const description = await question('Product description: ');
+    const price = await question('Product price: ');
+    const image = await question('Product image URL: ');
+    const categoryId = await question('Category ID: ');
+
+    const product = {
+      name,
+      description,
+      price: parseFloat(price),
+      image,
+      categoryId: parseInt(categoryId)
+    };
+
+    const response = await axios.post(API_URL, product);
+    console.log('Product created successfully:', response.data);
   } catch (error) {
-    console.error('Failed to create product:', error);
+    console.log(error);
+    //console.error('Error creating product:', error.response ? error.response.data : error.message);
   } finally {
     rl.close();
   }
 };
 
-createProductCLI();
+createProduct();
