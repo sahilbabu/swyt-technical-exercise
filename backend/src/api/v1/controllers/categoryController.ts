@@ -1,14 +1,18 @@
+/* Category Controller
+ * ------------------------- */
 import { Request, Response } from 'express';
 import { createCategoryService, getCategoriesService } from '../services/categoryService';
+import { sendCreated, sendBadRequest } from '../../../utils/response';
 
 export const createCategory = async (req: Request, res: Response) => {
   const { name, parentCategoryId } = req.body;
-  console.log(req.body);
+
   try {
     const category = await createCategoryService({ name, parentCategoryId });
-    res.status(201).json(category);
+    sendCreated(res, { data: category, message: 'Category created successfully' });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create category' });
+    console.error('Error creating category:', error);
+    sendBadRequest(res, 'Failed to create category');
   }
 };
 
@@ -17,6 +21,6 @@ export const getCategories = async (req: Request, res: Response) => {
     const categories = await getCategoriesService();
     res.status(200).json(categories);
   } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch categories' });
+    sendBadRequest(res, 'Failed to fetch categories');
   }
 };
