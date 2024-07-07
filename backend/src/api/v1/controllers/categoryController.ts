@@ -1,6 +1,9 @@
+  /* Category Controller
+  * ------------------------- */
 import { Request, Response } from 'express';
 import { createCategoryService, getCategoriesService } from '../services/categoryService';
 import { sendCreated, sendBadRequest } from '../../../utils/response';
+
 
 export const createCategory = async (req: Request, res: Response) => {
   const { name, parentCategoryId } = req.body;

@@ -1,3 +1,5 @@
+  /* Category Services
+  * ------------------------- */
 import { addCategory, fetchCategories } from '../repositories/categoryRepository';
 
 export const createCategoryService = async (data: { name: string; parentCategoryId?: number }) => {
