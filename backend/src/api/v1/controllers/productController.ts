@@ -10,7 +10,6 @@ export const addProduct = async (data: { name: string; description: string; pric
 
 export const fetchProducts = async (sortBy: string, order: string, category: number | undefined, page: number, limit: number) => {
   const where = category ? { categoryId: category } : {};
-  console.log("fetchProducts >>>", where);
   return await prisma.product.findMany({
     where,
     orderBy: { [sortBy]: order },
@@ -21,6 +20,5 @@ export const fetchProducts = async (sortBy: string, order: string, category: num
 
 export const countProducts = async (category: number | undefined) => {
   const where = category ? { categoryId: category } : {};
-  console.log("countProducts >>>", where);
   return await prisma.product.count({ where });
 };

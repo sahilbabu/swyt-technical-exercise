@@ -65,7 +65,6 @@
           <option value="desc">Descending</option>
         </select>
       </div>
-
     </div>
 
 
@@ -84,12 +83,9 @@
             <p class="px-2 mt-1 text-sm text-gray-700">{{ product.description }}</p>
             <p class="px-2 mt-1 text-lg font-medium text-gray-900">${{ product.price }}</p>
           </a>
-
           <!-- More products... -->
         </div>
         
-        
-
       </div>
     </div>
     <!-- Pagination Controls -->
@@ -104,9 +100,6 @@
             <button @click="nextPage" :disabled="currentPage === totalPages" class="text-base md:text-sm text-green-500 font-bold">Next</button>
           </div>
         </div>
-
-
-
   </div>
 </template>
 

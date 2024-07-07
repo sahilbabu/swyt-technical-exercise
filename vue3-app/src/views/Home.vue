@@ -12,9 +12,6 @@
   </div>
 
 
-  <!--Post Content-->
-
-
   <!--Lead Para-->
   <p class="py-6">
     👋 Welcome  <a class="text-green-500 no-underline hover:underline" href="#">fellow</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.
@@ -42,9 +39,6 @@
 <!--Divider-->
 <hr class="border-b-2 border-gray-400 mb-8 mx-4">
 
-
-
-<!--/Next & Prev Links-->
 
 </div>
 <!--/container-->

@@ -8,6 +8,7 @@ const apiClient = axios.create({
 })
 
 // Categories API
+//------------------
 export const fetchCategories = async (params?: { page?: number; limit?: number }) => {
   const response = await apiClient.get('/categories', { params })
   return response.data
@@ -19,6 +20,7 @@ export const createCategory = async (name: string, parentCategoryId?: number) =>
 }
 
 // Products API
+//------------------
 export const fetchProducts = async (params?: { sortBy?: string; order?: string; category?: number; page?: number; limit?: number }) => {
   const response = await apiClient.get('/products', { params })
   return response.data
