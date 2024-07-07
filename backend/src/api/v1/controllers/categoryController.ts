@@ -1,5 +1,3 @@
-/* Category Controller
- * ------------------------- */
 import { Request, Response } from 'express';
 import { createCategoryService, getCategoriesService } from '../services/categoryService';
 import { sendCreated, sendBadRequest } from '../../../utils/response';

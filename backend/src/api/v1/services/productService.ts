@@ -7,6 +7,8 @@ export const createProductService = async (data: { name: string; description: st
 
 export const getProductsService = async (sortBy: string, order: string, category: number| undefined, page: number, limit: number) => {
   const totalItems = await countProducts(category);
+  console.log("totalItems >>>", totalItems);
   const products = await fetchProducts(sortBy, order, category, page, limit);
+  console.log("products >>>", products);
   return { totalItems, products };
 };
