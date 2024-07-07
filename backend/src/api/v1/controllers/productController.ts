@@ -1,21 +1,26 @@
-import { Request, Response } from 'express';
-import { addProduct, fetchProducts } from '../repositories/productRepository';
+import { PrismaClient, Product } from '@prisma/client';
 
-export const createProduct = async (req: Request, res: Response) => {
-  const { name, description, price, image, categoryId } = req.body;
-  try {
-    const product = await addProduct({ name, description, price, image, categoryId });
-    res.status(201).json(product);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to create product' });
-  }
+const prisma = new PrismaClient();
+
+export const addProduct = async (data: { name: string; description: string; price: number; image: string; categoryId: number }): Promise<Product> => {
+  return await prisma.product.create({
+    data
+  });
 };
 
-export const getProducts = async (req: Request, res: Response) => {
-  try {
-    const products = await fetchProducts();
-    res.status(200).json(products);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch products' });
-  }
+export const fetchProducts = async (sortBy: string, order: string, category: number | undefined, page: number, limit: number) => {
+  const where = category ? { categoryId: category } : {};
+  console.log("fetchProducts >>>", where);
+  return await prisma.product.findMany({
+    where,
+    orderBy: { [sortBy]: order },
+    skip: (page - 1) * limit,
+    take: limit
+  });
+};
+
+export const countProducts = async (category: number | undefined) => {
+  const where = category ? { categoryId: category } : {};
+  console.log("countProducts >>>", where);
+  return await prisma.product.count({ where });
 };

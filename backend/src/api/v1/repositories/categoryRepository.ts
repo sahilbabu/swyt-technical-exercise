@@ -1,9 +1,9 @@
-import { createCategory, getCategories } from '../models/categoryModel';
+import { addCategory, fetchCategories } from '../repositories/categoryRepository';
 
-export const addCategory = async (data: { name: string; parentCategoryId?: number }) => {
-  return await createCategory(data);
+export const createCategoryService = async (data: { name: string; parentCategoryId?: number }) => {
+  return await addCategory(data);
 };
 
-export const fetchCategories = async () => {
-  return await getCategories();
+export const getCategoriesService = async () => {
+  return await fetchCategories();
 };
